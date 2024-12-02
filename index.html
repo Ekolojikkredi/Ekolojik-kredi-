@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekolojik Kredi</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="firebase.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
+            <img src="logo.png" alt="Ekolojik Kredi Logo" class="logo">
+            <h1>Ekolojik Kredi</h1>
+            <div class="menu" id="menuContent">
+                <a href="#nedir" onclick="showSection('nedir')">Nedir?</a>
+                <a href="#hazirlayanlar" onclick="showSection('hazirlayanlar')">Hazırlayanlar</a>
+                <a href="#dahaFazlaBilgi" onclick="showSection('dahaFazlaBilgi')">Daha Fazla Bilgi</a>
+                <a href="#bizeUlasin" onclick="showSection('bizeUlasin')">Bize Ulaşın</a>
+                <a href="#ekolojikKrediSayaci" onclick="showSection('ekolojikKrediSayaci')">Ekolojik Kredi Sayacı</a>
+                <a href="#geriDonusumNedir" onclick="showSection('geriDonusumNedir')">Geri Dönüşüm Nedir?</a>
+            </div>
+        </div>
+        <div class="right">
+            <button onclick="showSection('veriGirisi')" class="oval-btn">Veri Girişi</button>
+            <button id="veriGoruntulemeButon" onclick="showVeriGoruntuleme()" class="oval-btn">Veri Görme</button>
+            <button onclick="showSection('kayit')" class="oval-btn">Kayıt Ol</button>
+        </div>
+    </div>
+
+    <div id="nedir" class="section">
+        <h2>Ekolojik Kredi Nedir?</h2>
+        <p>Ekolojik Kredi Projesi, çevre bilincini artırmak ve okullarda geri dönüşüm kültürünü geliştirmek amacıyla oluşturulmuştur. Öğrenciler, atıkları türlerine göre ayrıştırarak puan toplar ve ödüller kazanır. Proje, Türkiye'nin sıfır atık hedeflerine ve doğal kaynakların korunmasına katkı sağlamayı amaçlar.</p>
+    </div>
+
+    <div id="hazirlayanlar" class="section">
+        <h2>Hazırlayanlar</h2>
+        <p>Danışman: Osman Onuk</p>
+        <p>Öğrenciler: Muhammedcan Arslanparçası, Yağız Efe Yılmaz, Bilal Yiğit Tezcan</p>
+    </div>
+
+    <div id="dahaFazlaBilgi" class="section">
+        <h2>Daha Fazla Bilgi</h2>
+        <p>Proje hakkında daha fazla bilgi için tıklayın: <a href="https://sifiratik.gov.tr/">Sıfır Atık</a></p>
+    </div>
+
+    <div id="bizeUlasin" class="section">
+        <h2>Bize Ulaşın</h2>
+        <p>Email: <a href="mailto:ekolojikkreditubitak@gmail.com">ekolojikkreditubitak@gmail.com</a></p>
+    </div>
+
+    <div id="ekolojikKrediSayaci" class="section">
+        <h2>Ekolojik Kredi Sayacı</h2>
+        <p>Toplam Ekolojik Kredi: <span id="toplamKredi">0</span></p>
+    </div>
+
+    <div id="geriDonusumNedir" class="section">
+        <h2>Geri Dönüşüm Nedir?</h2>
+        <p>Geri dönüşüm, atık materyallerin toplanarak yeniden işlenmesi ve yeni ürünler oluşturulması sürecidir. Bu süreç, doğal kaynakların korunmasını sağlar, enerji tasarrufu yapar ve çevre kirliliğini azaltır. Geri dönüşüm, aynı zamanda ekonomi için de faydalıdır çünkü yeni hammadde ihtiyacını azaltır ve atık yönetim maliyetlerini düşürür. Geri dönüşümün önemi günümüzde daha da artmıştır, çünkü dünya kaynakları hızla tükenmekte ve çevre kirliliği ciddi boyutlara ulaşmaktadır. Bu nedenle, geri dönüşüm alışkanlığı kazanmak ve bunu yaygınlaştırmak her bireyin sorumluluğudur.</p>
+        <p>Geri dönüşüm, cam, plastik, kağıt, metal gibi farklı materyaller için uygulanabilir. Her bir materyalin geri dönüşüm süreci farklıdır ancak genel olarak atıklar toplanır, ayrıştırılır ve yeniden işlenir. Bu süreçte, atıklar geri dönüşüm tesislerine gönderilir ve burada farklı işlemlerden geçerek yeniden kullanılabilir malzemeler haline getirilir. Geri dönüşüm, doğaya olan zararı azaltmak ve sürdürülebilir bir gelecek oluşturmak için kritik öneme sahiptir.</p>
+    </div>
+
+    <div id="veriGirisi" class="section">
+        <h2>Veri Girişi</h2>
+        <form id="veriGirisiForm">
+            <input type="text" name="okul" placeholder="Okul" required>
+            <select name="il" id="il" required>
+                <!-- İller buraya eklenecek -->
+            </select>
+            <select name="ilce" id="ilce" required>
+                <!-- İlçeler buraya eklenecek -->
+            </select>
+            <input type="password" name="sifre" placeholder="Şifre" required>
+            <button type="submit">Kayıt Ol ve Giriş Yap</button>
+        </form>
+    </div>
+
+    <div id="kayit" class="section">
+        <h2>Kayıt Ol</h2>
+        <form id="kayitForm">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="isim" placeholder="İsim" required>
+            <input type="text" name="okul" placeholder="Okul" required>
+            <select name="il" id="kayitIl" required>
+                <!-- İller buraya eklenecek -->
+            </select>
+            <select name="ilce" id="kayitIlce" required>
+                <!-- İlçeler buraya eklenecek -->
+            </select>
+            <input type="text" name="okulNumarasi" placeholder="Okul Numarası" required>
+            <button type="submit">Kayıt Ol</button>
+        </form>
+    </div>
+
+    <div id="veriGoruntuleme" class="section">
+        <h2>Veri Görme</h2>
+        <form id="veriGoruntulemeForm">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="sifre" placeholder="Şifre" required>
+            <button type="submit">Verileri Gör</button>
+        </form>
+        <div class="left-info" style="display: none;">
+            <p>İsim: <span id="veriGoruntulemeIsim"></span></p>
+            <p>Puan: <span id="veriGoruntulemePuan"></span></p>
+        </div>
+        <div class="right-info" style="display: none;">
+            <h3>Geçmiş Teslimler</h3>
+            <ul id="gecmisTeslimler"></ul>
+        </div>
+    </div>
+
+    <div id="veriGirisiFormContainer" class="section" style="display: none;">
+        <h2>Veri Girişi</h2>
+        <form id="veriGirisiForm">
+            <input type="text" name="okulIsmi" placeholder="Okul İsmi" required>
+            <input type="text" name="okulNumarasi" placeholder="Okul Numarası" required>
+            <select name="atikTuru" required>
+                <option value="kağıt">Kağıt</option>
+                <option value="plastik">Plastik</option>
+                <option value="cam">Cam</option>
+                <option value="metal">Metal</option>
+                <option value="elektronik atıklar">Elektronik Atıklar</option>
+            </select>
+            <input type="number" name="atikKutlesi" placeholder="Atık Kütlesi (kg)" required>
+            <input type="text" name="teslimEden" placeholder="Teslim Eden" required>
+            <button type="submit">Veri Gir</button><button type="submit">Veri Gir</button>
+        </form>
+    </div>
+</body>
+</html>
